@@ -19,9 +19,20 @@ const ACTION_COLORS: Record<ActionType, { bg: string; border: string; dot: strin
 };
 
 function AgentBadge({ name }: { name: string }) {
+  const TURKISH_NAMES: Record<string, string> = {
+    Inventory: "Stok",
+    DemandForecast: "Talep Tahmini",
+    SupplyShield: "Tedarik Kalkanı",
+    MeshFinder: "Ağ Bulucu",
+    SupplierScout: "Tedarikçi Tarayıcı",
+    LogisticsPlanner: "Tedarik Planlayıcı",
+    ActionComposer: "Aksiyon Oluşturucu",
+    Orchestrator: "Orkestratör",
+  };
+  const normalized = name.replace("Agent", "");
   return (
-    <span style={{ fontSize: 10, fontFamily: "Fira Code", padding: "2px 8px", borderRadius: 4, background: "rgba(99,102,241,0.12)", border: "1px solid rgba(99,102,241,0.2)", color: "#a5b4fc" }}>
-      {name.replace("Agent", "")}
+    <span style={{ fontSize: 10, fontFamily: "Fira Code", padding: "2px 8px", borderRadius: 4, background: "rgba(59,130,246,0.1)", border: "1px solid rgba(59,130,246,0.2)", color: "#1d4ed8" }}>
+      {TURKISH_NAMES[normalized] ?? normalized}
     </span>
   );
 }
@@ -30,7 +41,7 @@ export function AgentPanel({ result, loading, onReAnalyze }: AgentPanelProps) {
   if (loading) {
     return (
       <GlassCard padding={40}>
-        <LoadingSpinner label="7 ajan pipeline çalışıyor..." />
+        <LoadingSpinner label="7 ajan akışı çalışıyor..." />
       </GlassCard>
     );
   }
@@ -42,10 +53,10 @@ export function AgentPanel({ result, loading, onReAnalyze }: AgentPanelProps) {
       {/* Orchestrator Summary */}
       <GlassCard padding={20}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
-          <div style={{ fontSize: 14, fontWeight: 600, color: "#e2e8f0" }}>Orchestrator Özeti</div>
+          <div style={{ fontSize: 14, fontWeight: 600, color: "#0f172a" }}>Orkestratör Özeti</div>
           <GlassButton variant="ghost" onClick={onReAnalyze}>Yeniden Analiz Et</GlassButton>
         </div>
-        <p style={{ fontSize: 13, color: "#94a3b8", lineHeight: 1.7, marginBottom: 12 }}>{result.orchestrator_summary}</p>
+        <p style={{ fontSize: 13, color: "#475569", lineHeight: 1.7, marginBottom: 12 }}>{result.orchestrator_summary}</p>
         <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
           {result.agents_used.map((a) => <AgentBadge key={a} name={a} />)}
         </div>
@@ -53,7 +64,7 @@ export function AgentPanel({ result, loading, onReAnalyze }: AgentPanelProps) {
 
       {/* Action Plan */}
       <GlassCard padding={20}>
-        <div style={{ fontSize: 14, fontWeight: 600, color: "#e2e8f0", marginBottom: 14 }}>
+        <div style={{ fontSize: 14, fontWeight: 600, color: "#0f172a", marginBottom: 14 }}>
           Aksiyon Planı
           <span style={{ fontSize: 12, color: "#64748b", fontWeight: 400, marginLeft: 8 }}>({result.action_plan.length} adım)</span>
         </div>
@@ -64,9 +75,9 @@ export function AgentPanel({ result, loading, onReAnalyze }: AgentPanelProps) {
               <div key={action.priority} style={{ background: c.bg, border: `1px solid ${c.border}`, borderRadius: 10, padding: "14px 16px" }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
                   <div style={{ width: 6, height: 6, borderRadius: "50%", background: c.dot, boxShadow: `0 0 6px ${c.dot}` }} />
-                  <span style={{ fontSize: 13, fontWeight: 600, color: "#e2e8f0" }}>#{action.priority} {action.title}</span>
+                  <span style={{ fontSize: 13, fontWeight: 600, color: "#0f172a" }}>#{action.priority} {action.title}</span>
                 </div>
-                <p style={{ fontSize: 12, color: "#94a3b8", lineHeight: 1.6, margin: "0 0 8px" }}>{action.description}</p>
+                <p style={{ fontSize: 12, color: "#475569", lineHeight: 1.6, margin: "0 0 8px" }}>{action.description}</p>
                 <div style={{ display: "flex", justifyContent: "space-between", fontSize: 11, color: "#64748b" }}>
                   <span style={{ color: "#34d399" }}>Etki: {action.estimated_impact}</span>
                   {action.deadline && <span>Son Tarih: {action.deadline}</span>}
@@ -80,20 +91,20 @@ export function AgentPanel({ result, loading, onReAnalyze }: AgentPanelProps) {
       {/* Supplier Alternatives */}
       {result.supplier_alternatives.length > 0 && (
         <GlassCard padding={20}>
-          <div style={{ fontSize: 14, fontWeight: 600, color: "#e2e8f0", marginBottom: 14 }}>Tedarikçi Alternatifleri</div>
+          <div style={{ fontSize: 14, fontWeight: 600, color: "#0f172a", marginBottom: 14 }}>Tedarikçi Alternatifleri</div>
           <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
             {result.supplier_alternatives.slice(0, 3).map((s, i) => (
-              <div key={i} style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 10, padding: "12px 14px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+              <div key={i} style={{ background: "rgba(255,255,255,0.72)", border: "1px solid rgba(148,163,184,0.18)", borderRadius: 10, padding: "12px 14px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                 <div>
-                  <div style={{ fontSize: 13, fontWeight: 600, color: "#e2e8f0" }}>{s.supplier_name}</div>
-                  <div style={{ fontSize: 11, color: "#64748b", marginTop: 2 }}>{s.country} · {s.lead_time_days} gün lead time</div>
-                  <div style={{ fontSize: 11, color: "#94a3b8", marginTop: 4 }}>{s.notes}</div>
+                  <div style={{ fontSize: 13, fontWeight: 600, color: "#0f172a" }}>{s.supplier_name}</div>
+                  <div style={{ fontSize: 11, color: "#64748b", marginTop: 2 }}>{s.country} · {s.lead_time_days} gün termin süresi</div>
+                  <div style={{ fontSize: 11, color: "#475569", marginTop: 4 }}>{s.notes}</div>
                 </div>
                 <div style={{ textAlign: "right" }}>
                   <div style={{ fontSize: 18, fontWeight: 700, fontFamily: "Fira Code", color: "#34d399" }}>{Math.round(s.match_score * 100)}%</div>
                   <div style={{ fontSize: 10, color: "#64748b" }}>uyum</div>
                   <div style={{ fontSize: 11, color: s.estimated_cost_change_pct > 0 ? "#f59e0b" : "#34d399", marginTop: 4 }}>
-                    {s.estimated_cost_change_pct > 0 ? "+" : ""}{s.estimated_cost_change_pct}% maliyet
+                    {s.estimated_cost_change_pct > 0 ? "+" : ""}{s.estimated_cost_change_pct}% maliyet değişimi
                   </div>
                 </div>
               </div>
@@ -104,7 +115,7 @@ export function AgentPanel({ result, loading, onReAnalyze }: AgentPanelProps) {
 
       {/* Logistics Plan */}
       <GlassCard padding={20}>
-        <div style={{ fontSize: 14, fontWeight: 600, color: "#e2e8f0", marginBottom: 14 }}>Lojistik Planı</div>
+        <div style={{ fontSize: 14, fontWeight: 600, color: "#0f172a", marginBottom: 14 }}>Lojistik Planı</div>
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
           {[
             { label: "Sipariş Miktarı",  value: `${result.logistics_plan.recommended_order_qty} adet` },
@@ -113,9 +124,9 @@ export function AgentPanel({ result, loading, onReAnalyze }: AgentPanelProps) {
             { label: "Tahmini Varış",     value: result.logistics_plan.estimated_arrival_date },
             { label: "Tahmini Maliyet",   value: `$${result.logistics_plan.estimated_cost.toLocaleString()}` },
           ].map(({ label, value }) => (
-            <div key={label} style={{ background: "rgba(255,255,255,0.03)", borderRadius: 8, padding: "10px 12px" }}>
+            <div key={label} style={{ background: "rgba(248,250,252,0.9)", border: "1px solid rgba(148,163,184,0.18)", borderRadius: 8, padding: "10px 12px" }}>
               <div style={{ fontSize: 10, color: "#64748b", fontFamily: "Fira Code", marginBottom: 4 }}>{label}</div>
-              <div style={{ fontSize: 13, fontWeight: 600, color: "#e2e8f0", fontFamily: "Fira Code" }}>{value}</div>
+              <div style={{ fontSize: 13, fontWeight: 600, color: "#0f172a", fontFamily: "Fira Code" }}>{value}</div>
             </div>
           ))}
         </div>

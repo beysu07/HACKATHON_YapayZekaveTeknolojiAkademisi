@@ -19,6 +19,13 @@ class LogisticsPlannerAgent:
         "express_courier": {"days_factor": 0.15, "cost_multiplier": 7.0},
     }
 
+    SHIPPING_LABELS = {
+        "air": "hava yolu",
+        "sea": "deniz yolu",
+        "rail": "demir yolu",
+        "express_courier": "ekspres kurye",
+    }
+
     def _eoq(self, annual_demand: float, order_cost: float, holding_cost_per_unit: float) -> int:
         if holding_cost_per_unit <= 0:
             return int(annual_demand / 12)
@@ -63,9 +70,9 @@ class LogisticsPlannerAgent:
                 shipping_method=method,
                 estimated_cost=round(total_shipping, 2),
                 notes=(
-                    f"EOQ base: {eoq} units, risk-adjusted to {recommended_qty}. "
-                    f"{method.replace('_', ' ').title()} shipping selected based on "
-                    f"{days_of_supply:.1f} days remaining supply."
+                    f"EOQ bazı: {eoq} adet, risk uyarlamasıyla {recommended_qty} adede çıkarıldı. "
+                    f"Kalan stok {days_of_supply:.1f} gün olduğu için "
+                    f"{self.SHIPPING_LABELS.get(method, method)} sevkiyatı seçildi."
                 ),
             ),
             "eoq": eoq,

@@ -97,47 +97,47 @@ export default function AdminPage() {
   const adminCount = users.filter(u => u.role === "admin").length;
 
   const stats = [
-    { label: "Toplam Kullanıcı", value: totalUsers, color: "#6366f1", bg: "rgba(99,102,241,0.1)", border: "rgba(99,102,241,0.2)" },
-    { label: "KOBİ Kullanıcı", value: smeCount, color: "#34d399", bg: "rgba(52,211,153,0.1)", border: "rgba(52,211,153,0.2)" },
-    { label: "Admin Kullanıcı", value: adminCount, color: "#a5b4fc", bg: "rgba(165,180,252,0.1)", border: "rgba(165,180,252,0.2)" },
-    { label: "Sistem Durumu", value: "Aktif", color: "#34d399", bg: "rgba(52,211,153,0.1)", border: "rgba(52,211,153,0.2)" },
+    { label: "Toplam Kullanıcı", value: totalUsers, color: "#3b82f6", bg: "rgba(59,130,246,0.1)", border: "rgba(59,130,246,0.18)" },
+    { label: "KOBİ Kullanıcı", value: smeCount, color: "#14b8a6", bg: "rgba(20,184,166,0.1)", border: "rgba(20,184,166,0.18)" },
+    { label: "Yönetici Kullanıcı", value: adminCount, color: "#93c5fd", bg: "rgba(147,197,253,0.1)", border: "rgba(147,197,253,0.18)" },
+    { label: "Sistem Durumu", value: "Aktif", color: "#14b8a6", bg: "rgba(20,184,166,0.1)", border: "rgba(20,184,166,0.18)" },
   ];
 
   return (
-    <div style={{ minHeight: "100vh", background: "#020817", padding: 0, position: "relative", overflow: "hidden" }}>
+    <div style={{ minHeight: "100vh", background: "#f3f7fb", padding: 0, position: "relative", overflow: "hidden" }}>
       {/* Background orbs */}
-      <div style={{ position: "fixed", top: 0, left: 0, right: 0, height: "50vh", pointerEvents: "none", background: "radial-gradient(ellipse 80% 60% at 30% -10%,rgba(99,102,241,0.1),transparent)", zIndex: 0 }} />
-      <div style={{ position: "fixed", bottom: "-20%", right: "-10%", width: 500, height: 500, borderRadius: "50%", background: "radial-gradient(circle, rgba(139,92,246,0.08) 0%, transparent 70%)", pointerEvents: "none", zIndex: 0 }} />
+      <div style={{ position: "fixed", top: 0, left: 0, right: 0, height: "50vh", pointerEvents: "none", background: "radial-gradient(ellipse 80% 60% at 30% -10%,rgba(59,130,246,0.1),transparent)", zIndex: 0 }} />
+      <div style={{ position: "fixed", bottom: "-20%", right: "-10%", width: 500, height: 500, borderRadius: "50%", background: "radial-gradient(circle, rgba(20,184,166,0.08) 0%, transparent 70%)", pointerEvents: "none", zIndex: 0 }} />
 
       <div style={{ position: "relative", zIndex: 1, maxWidth: 1100, margin: "0 auto", padding: "32px 24px" }}>
         {/* Header */}
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 36 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
-            <div style={{ width: 44, height: 44, borderRadius: 13, background: "linear-gradient(135deg,#6366f1,#8b5cf6)", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 0 20px rgba(99,102,241,0.4)", color: "white" }}>
+            <div style={{ width: 44, height: 44, borderRadius: 13, background: "linear-gradient(135deg,#3b82f6,#14b8a6)", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 0 20px rgba(59,130,246,0.35)", color: "white" }}>
               <IconShield />
             </div>
             <div>
-              <div style={{ fontFamily: "Fira Code", fontWeight: 700, fontSize: 22, color: "#e2e8f0", lineHeight: 1.2 }}>Admin Paneli</div>
+              <div style={{ fontFamily: "Fira Code", fontWeight: 700, fontSize: 22, color: "#0f172a", lineHeight: 1.2 }}>Admin Paneli</div>
               <div style={{ fontSize: 12, color: "#64748b", fontFamily: "Fira Code" }}>SupplyShield · Sistem Yönetimi</div>
             </div>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
             {currentUser && (
               <div style={{ textAlign: "right" }}>
-                <div style={{ fontSize: 13, color: "#e2e8f0", fontWeight: 500 }}>{currentUser.username}</div>
-                <div style={{ fontSize: 11, color: "#6366f1", fontFamily: "Fira Code" }}>Administrator</div>
+                <div style={{ fontSize: 13, color: "#0f172a", fontWeight: 500 }}>{currentUser.username}</div>
+                <div style={{ fontSize: 11, color: "#3b82f6", fontFamily: "Fira Code" }}>Yönetici</div>
               </div>
             )}
             <button
               onClick={handleLogout}
               style={{
                 display: "flex", alignItems: "center", gap: 8, padding: "9px 16px",
-                background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)",
-                borderRadius: 10, color: "#94a3b8", cursor: "pointer", fontSize: 13,
+                background: "rgba(255,255,255,0.72)", border: "1px solid rgba(148,163,184,0.22)",
+                borderRadius: 10, color: "#475569", cursor: "pointer", fontSize: 13,
                 transition: "all 0.15s ease",
               }}
               onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = "rgba(239,68,68,0.1)"; (e.currentTarget as HTMLElement).style.borderColor = "rgba(239,68,68,0.3)"; (e.currentTarget as HTMLElement).style.color = "#f87171"; }}
-              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.05)"; (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.1)"; (e.currentTarget as HTMLElement).style.color = "#94a3b8"; }}
+              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.72)"; (e.currentTarget as HTMLElement).style.borderColor = "rgba(148,163,184,0.22)"; (e.currentTarget as HTMLElement).style.color = "#475569"; }}
             >
               <IconLogout /> Çıkış Yap
             </button>
@@ -162,16 +162,16 @@ export default function AdminPage() {
 
         {/* Users table */}
         <div style={{
-          background: "rgba(15,20,40,0.7)",
-          border: "1px solid rgba(255,255,255,0.07)",
+          background: "rgba(255,255,255,0.82)",
+          border: "1px solid rgba(148,163,184,0.2)",
           borderRadius: 16,
           backdropFilter: "blur(16px)",
           marginBottom: 20,
           overflow: "hidden",
         }}>
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "20px 24px", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "20px 24px", borderBottom: "1px solid rgba(148,163,184,0.2)" }}>
             <div>
-              <div style={{ fontSize: 15, fontWeight: 600, color: "#e2e8f0", display: "flex", alignItems: "center", gap: 8 }}>
+              <div style={{ fontSize: 15, fontWeight: 600, color: "#0f172a", display: "flex", alignItems: "center", gap: 8 }}>
                 <IconUsers /> Kullanıcı Yönetimi
               </div>
               <div style={{ fontSize: 11, color: "#64748b", fontFamily: "Fira Code", marginTop: 2 }}>Kayıtlı kullanıcılar</div>
@@ -180,8 +180,8 @@ export default function AdminPage() {
               onClick={loadUsers}
               style={{
                 display: "flex", alignItems: "center", gap: 7, padding: "8px 14px",
-                background: "rgba(99,102,241,0.12)", border: "1px solid rgba(99,102,241,0.2)",
-                borderRadius: 9, color: "#a5b4fc", cursor: "pointer", fontSize: 12,
+                background: "rgba(59,130,246,0.12)", border: "1px solid rgba(59,130,246,0.2)",
+                borderRadius: 9, color: "#93c5fd", cursor: "pointer", fontSize: 12,
                 fontFamily: "Fira Code", transition: "all 0.15s",
               }}
             >
@@ -203,9 +203,9 @@ export default function AdminPage() {
           ) : (
             <table style={{ width: "100%", borderCollapse: "collapse" }}>
               <thead>
-                <tr style={{ background: "rgba(255,255,255,0.03)" }}>
+                <tr style={{ background: "rgba(148,163,184,0.10)" }}>
                   {["Kullanıcı Adı", "Şirket", "E-posta", "Rol", "İşlemler"].map(h => (
-                    <th key={h} style={{ padding: "12px 20px", textAlign: "left", fontSize: 11, color: "#64748b", fontFamily: "Fira Code", letterSpacing: 1, textTransform: "uppercase", fontWeight: 500, borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+                    <th key={h} style={{ padding: "12px 20px", textAlign: "left", fontSize: 11, color: "#64748b", fontFamily: "Fira Code", letterSpacing: 1, textTransform: "uppercase", fontWeight: 500, borderBottom: "1px solid rgba(148,163,184,0.2)" }}>
                       {h}
                     </th>
                   ))}
@@ -219,19 +219,19 @@ export default function AdminPage() {
                     </td>
                   </tr>
                 ) : users.map((u, i) => (
-                  <tr key={u.username} style={{ borderBottom: i < users.length - 1 ? "1px solid rgba(255,255,255,0.04)" : "none", transition: "background 0.15s" }}
-                    onMouseEnter={e => (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.02)"}
+                  <tr key={u.username} style={{ borderBottom: i < users.length - 1 ? "1px solid rgba(148,163,184,0.14)" : "none", transition: "background 0.15s" }}
+                    onMouseEnter={e => (e.currentTarget as HTMLElement).style.background = "rgba(148,163,184,0.08)"}
                     onMouseLeave={e => (e.currentTarget as HTMLElement).style.background = "transparent"}
                   >
-                    <td style={{ padding: "14px 20px", fontSize: 13, color: "#e2e8f0", fontFamily: "Fira Code" }}>{u.username}</td>
-                    <td style={{ padding: "14px 20px", fontSize: 13, color: "#94a3b8" }}>{u.company_name || "—"}</td>
-                    <td style={{ padding: "14px 20px", fontSize: 13, color: "#94a3b8" }}>{u.email || "—"}</td>
+                    <td style={{ padding: "14px 20px", fontSize: 13, color: "#0f172a", fontFamily: "Fira Code" }}>{u.username}</td>
+                    <td style={{ padding: "14px 20px", fontSize: 13, color: "#334155" }}>{u.company_name || "—"}</td>
+                    <td style={{ padding: "14px 20px", fontSize: 13, color: "#334155" }}>{u.email || "—"}</td>
                     <td style={{ padding: "14px 20px" }}>
                       <span style={{
                         padding: "3px 10px", borderRadius: 6, fontSize: 11, fontFamily: "Fira Code", fontWeight: 600,
-                        background: u.role === "admin" ? "rgba(99,102,241,0.15)" : "rgba(52,211,153,0.12)",
-                        color: u.role === "admin" ? "#a5b4fc" : "#34d399",
-                        border: u.role === "admin" ? "1px solid rgba(99,102,241,0.25)" : "1px solid rgba(52,211,153,0.2)",
+                        background: u.role === "admin" ? "rgba(59,130,246,0.15)" : "rgba(20,184,166,0.12)",
+                        color: u.role === "admin" ? "#93c5fd" : "#2dd4bf",
+                        border: u.role === "admin" ? "1px solid rgba(59,130,246,0.22)" : "1px solid rgba(20,184,166,0.18)",
                       }}>
                         {u.role === "admin" ? "Admin" : "KOBİ"}
                       </span>
@@ -253,7 +253,7 @@ export default function AdminPage() {
                           <IconTrash /> {deletingUser === u.username ? "Siliniyor..." : "Sil"}
                         </button>
                       ) : (
-                        <span style={{ fontSize: 11, color: "#475569", fontFamily: "Fira Code" }}>Korumalı</span>
+                        <span style={{ fontSize: 11, color: "#64748b", fontFamily: "Fira Code" }}>Korumalı</span>
                       )}
                     </td>
                   </tr>
@@ -265,25 +265,25 @@ export default function AdminPage() {
 
         {/* System Info */}
         <div style={{
-          background: "rgba(15,20,40,0.7)",
-          border: "1px solid rgba(255,255,255,0.07)",
+          background: "rgba(255,255,255,0.82)",
+          border: "1px solid rgba(148,163,184,0.2)",
           borderRadius: 16,
           padding: "24px",
           backdropFilter: "blur(16px)",
         }}>
-          <div style={{ fontSize: 11, color: "#6366f1", fontFamily: "Fira Code", marginBottom: 16, letterSpacing: 1, textTransform: "uppercase" }}>
+          <div style={{ fontSize: 11, color: "#3b82f6", fontFamily: "Fira Code", marginBottom: 16, letterSpacing: 1, textTransform: "uppercase" }}>
             Sistem Bilgileri
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16 }}>
             {[
-              { label: "Backend URL", value: "localhost:8000" },
+              { label: "Arka Uç Adresi", value: "localhost:8000" },
               { label: "Versiyon", value: "v1.0" },
               { label: "Aktif Ajanlar", value: "7 aktif" },
               { label: "Son Senkron", value: syncTime },
             ].map(item => (
               <div key={item.label}>
                 <div style={{ fontSize: 10, color: "#475569", fontFamily: "Fira Code", marginBottom: 4, textTransform: "uppercase", letterSpacing: 1 }}>{item.label}</div>
-                <div style={{ fontSize: 13, color: "#94a3b8", fontFamily: "Fira Code" }}>{item.value}</div>
+                <div style={{ fontSize: 13, color: "#334155", fontFamily: "Fira Code" }}>{item.value}</div>
               </div>
             ))}
           </div>

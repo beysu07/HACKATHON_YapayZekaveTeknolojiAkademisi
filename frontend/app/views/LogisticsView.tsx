@@ -32,7 +32,7 @@ function PlanCard({ product, plan, loading, onLoad }: { product: RiskSummary; pl
       {/* Header */}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 16 }}>
         <div>
-          <div style={{ fontSize: 14, fontWeight: 600, color: "#e2e8f0" }}>{product.product_name}</div>
+          <div style={{ fontSize: 14, fontWeight: 600, color: "#0f172a" }}>{product.product_name}</div>
           <div style={{ fontSize: 11, color: "#64748b", marginTop: 2 }}>{product.category} · {product.product_id}</div>
         </div>
         <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
@@ -57,14 +57,14 @@ function PlanCard({ product, plan, loading, onLoad }: { product: RiskSummary; pl
             { label: "Tahmini Maliyet", value: `$${lp.estimated_cost.toLocaleString()}` },
             { label: "Risk Skoru", value: `${plan!.risk_analysis.risk_score} / 100` },
           ].map(({ label, value }) => (
-            <div key={label} style={{ background: "rgba(255,255,255,0.03)", borderRadius: 8, padding: "10px 12px" }}>
+            <div key={label} style={{ background: "rgba(248,250,252,0.9)", border: "1px solid rgba(148,163,184,0.18)", borderRadius: 8, padding: "10px 12px" }}>
               <div style={{ fontSize: 10, color: "#64748b", fontFamily: "Fira Code", marginBottom: 4 }}>{label}</div>
               <div style={{ fontSize: 13, fontWeight: 600, color: urgencyColor, fontFamily: "Fira Code" }}>{value}</div>
             </div>
           ))}
-          <div style={{ gridColumn: "1/-1", background: "rgba(255,255,255,0.03)", borderRadius: 8, padding: "10px 12px" }}>
+          <div style={{ gridColumn: "1/-1", background: "rgba(248,250,252,0.9)", border: "1px solid rgba(148,163,184,0.18)", borderRadius: 8, padding: "10px 12px" }}>
             <div style={{ fontSize: 10, color: "#64748b", fontFamily: "Fira Code", marginBottom: 4 }}>NOTLAR</div>
-            <div style={{ fontSize: 11, color: "#94a3b8", lineHeight: 1.6 }}>{lp.notes}</div>
+            <div style={{ fontSize: 11, color: "#475569", lineHeight: 1.6 }}>{lp.notes}</div>
           </div>
         </div>
       )}
@@ -85,8 +85,8 @@ export function LogisticsView() {
   return (
     <div>
       <PageHeader
-        title="Lojistik Planlama"
-        subtitle="LogisticsPlannerAgent — EOQ tabanlı sipariş optimizasyonu"
+        title="Tedarik Planlama"
+        subtitle="EOQ tabanlı sipariş ve sevkiyat optimizasyonu"
         action={<GlassButton onClick={refresh} variant="primary"><IconRefresh /> Yenile</GlassButton>}
       />
 
