@@ -109,7 +109,7 @@ npm install
 
 ## Çalıştırma
 
-### Tek komutla çalıştırma
+### Önerilen yöntem: `start.sh` ile tek komutla çalıştırma
 
 Kök dizinde:
 
@@ -236,4 +236,3 @@ Bu proje prototip seviyesinde mock veriyle çalışır.
 - Bildirim, alarm ve e-posta uyarı sistemi
 - Rol bazlı daha detaylı yetkilendirme
 - Gerçek LLM destekli ajan yorumları ve önerileri
-

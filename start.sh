@@ -1,8 +1,10 @@
 #!/bin/bash
 set -e
 
+ROOT_DIR="$(cd "$(dirname "$0")" && pwd)"
+
 echo "=== SupplyShield — Starting Backend ==="
-cd "$(dirname "$0")/backend"
+cd "$ROOT_DIR/backend"
 
 if [ ! -d "venv" ]; then
   python3 -m venv venv
@@ -18,7 +20,7 @@ echo "Backend running at http://localhost:8000 (PID: $BACKEND_PID)"
 
 echo ""
 echo "=== SupplyShield — Starting Frontend ==="
-cd "$(dirname "$0")/frontend"
+cd "$ROOT_DIR/frontend"
 npm run dev -- --port 3000 &
 FRONTEND_PID=$!
 echo "Frontend running at http://localhost:3000 (PID: $FRONTEND_PID)"
