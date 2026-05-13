@@ -18,9 +18,9 @@ const TREND_CONFIG: Record<TrendDirection, { color: string; label: string }> = {
 function CustomTooltip({ active, payload, label }: any) {
   if (!active || !payload?.length) return null;
   return (
-    <div style={{ background: "rgba(10,15,30,0.95)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 8, padding: "10px 14px", fontSize: 12, fontFamily: "Fira Code" }}>
+    <div style={{ background: "rgba(255,255,255,0.96)", border: "1px solid rgba(148,163,184,0.24)", borderRadius: 8, padding: "10px 14px", fontSize: 12, fontFamily: "Fira Code" }}>
       <div style={{ color: "#64748b", marginBottom: 6 }}>{label}</div>
-      <div style={{ color: "#60a5fa" }}>Tahmin: <strong>{payload[0]?.value?.toFixed(1)}</strong></div>
+      <div style={{ color: "#1d4ed8" }}>Tahmin: <strong>{payload[0]?.value?.toFixed(1)}</strong></div>
     </div>
   );
 }
@@ -38,7 +38,7 @@ export function ForecastChart({ points, trend, productName }: ForecastChartProps
     <GlassCard padding={20}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 20 }}>
         <div>
-          <div style={{ fontSize: 14, fontWeight: 600, color: "#e2e8f0" }}>14 Günlük Talep Tahmini</div>
+          <div style={{ fontSize: 14, fontWeight: 600, color: "#0f172a" }}>14 Günlük Talep Tahmini</div>
           <div style={{ fontSize: 12, color: "#64748b", marginTop: 2 }}>{productName}</div>
         </div>
         <span style={{ fontSize: 12, fontFamily: "Fira Code", color: trendColor, background: `${trendColor}18`, border: `1px solid ${trendColor}33`, padding: "4px 10px", borderRadius: 6 }}>
@@ -53,7 +53,7 @@ export function ForecastChart({ points, trend, productName }: ForecastChartProps
               <stop offset="95%" stopColor="#6366f1" stopOpacity={0.02} />
             </linearGradient>
           </defs>
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.04)" />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(148,163,184,0.22)" />
           <XAxis dataKey="date" tick={{ fill: "#64748b", fontSize: 10, fontFamily: "Fira Code" }} axisLine={false} tickLine={false} />
           <YAxis tick={{ fill: "#64748b", fontSize: 10, fontFamily: "Fira Code" }} axisLine={false} tickLine={false} width={35} />
           <Tooltip content={<CustomTooltip />} />

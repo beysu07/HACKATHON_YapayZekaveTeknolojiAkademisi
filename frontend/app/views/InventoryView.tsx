@@ -15,7 +15,7 @@ function StockProgressBar({ current, reorder }: { current: number; reorder: numb
   const pct = Math.min((current / reorder) * 100, 200);
   const color = pct < 50 ? "#ef4444" : pct < 100 ? "#f59e0b" : "#34d399";
   return (
-    <div style={{ width: "100%", height: 6, background: "rgba(255,255,255,0.08)", borderRadius: 3 }}>
+    <div style={{ width: "100%", height: 6, background: "rgba(148,163,184,0.24)", borderRadius: 3 }}>
       <div style={{ width: `${Math.min(pct, 100)}%`, height: "100%", borderRadius: 3, background: color, boxShadow: `0 0 6px ${color}66`, transition: "width 0.5s ease" }} />
     </div>
   );
@@ -41,23 +41,23 @@ export function InventoryView() {
   return (
     <div>
       <PageHeader
-        title="Envanter Yönetimi"
-        subtitle="Anlık stok durumu — InventoryAnalystAgent tarafından izleniyor"
+        title="Stok Sağlığı"
+        subtitle="Anlık stok durumu ve yeniden sipariş eşikleri"
         action={<GlassButton onClick={refresh} variant="primary"><IconRefresh /> Yenile</GlassButton>}
       />
 
       {/* Özet Kartlar */}
       <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 16, marginBottom: 24 }}>
-        <SummaryCard label="KRİTİK STOK"   value={criticalCount}   color="#ef4444" />
-        <SummaryCard label="UYARI"          value={warningCount}    color="#f59e0b" />
-        <SummaryCard label="NORMAL"         value={okCount}         color="#34d399" />
-        <SummaryCard label="ORT. GÜN STOĞU" value={Number(totalDaysAvg)} color="#6366f1" />
+        <SummaryCard label="KRİTİK STOK"   value={criticalCount}      color="#ef4444" />
+        <SummaryCard label="UYARI"          value={warningCount}       color="#f59e0b" />
+        <SummaryCard label="SAĞLIKLI"       value={okCount}            color="#34d399" />
+        <SummaryCard label="ORT. GÜN STOĞU" value={Number(totalDaysAvg)} color="#4f8cff" />
       </div>
 
       <GlassCard padding={0}>
         {/* Table Header */}
-        <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr 1fr 100px", gap: 16, padding: "14px 20px", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
-          {["ÜRÜN", "SKU", "STOK / YENİDEN SİP.", "GÜN STOĞU", "DURUM", ""].map((h) => (
+        <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr 1fr 100px", gap: 16, padding: "14px 20px", borderBottom: "1px solid rgba(148,163,184,0.22)" }}>
+          {["ÜRÜN", "SKU", "STOK / YENİDEN SİPARİŞ", "KALAN GÜN", "DURUM", ""].map((h) => (
             <div key={h} style={{ fontSize: 10, color: "#64748b", fontFamily: "Fira Code", letterSpacing: "0.08em" }}>{h}</div>
           ))}
         </div>
@@ -83,16 +83,16 @@ function InventoryRow({ item, isLast }: { item: InventoryItem; isLast: boolean }
     <div style={{
       display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr 1fr 100px", gap: 16,
       padding: "14px 20px",
-      borderBottom: isLast ? "none" : "1px solid rgba(255,255,255,0.04)",
+      borderBottom: isLast ? "none" : "1px solid rgba(148,163,184,0.18)",
       transition: "background 0.15s ease",
     }}>
       <div>
-        <div style={{ fontSize: 13, fontWeight: 600, color: "#e2e8f0" }}>{item.product_name}</div>
+        <div style={{ fontSize: 13, fontWeight: 600, color: "#0f172a" }}>{item.product_name}</div>
         <div style={{ fontSize: 11, color: "#64748b", marginTop: 2 }}>Güncelleme: {new Date(item.last_updated).toLocaleTimeString("tr-TR")}</div>
       </div>
-      <div style={{ fontSize: 12, fontFamily: "Fira Code", color: "#94a3b8", alignSelf: "center" }}>{item.sku}</div>
+      <div style={{ fontSize: 12, fontFamily: "Fira Code", color: "#475569", alignSelf: "center" }}>{item.sku}</div>
       <div style={{ alignSelf: "center" }}>
-        <div style={{ fontSize: 13, fontFamily: "Fira Code", color: "#e2e8f0", marginBottom: 6 }}>
+        <div style={{ fontSize: 13, fontFamily: "Fira Code", color: "#0f172a", marginBottom: 6 }}>
           <span style={{ color: item.current_stock < item.reorder_point ? "#f87171" : "#34d399" }}>{item.current_stock}</span>
           <span style={{ color: "#64748b" }}> / {item.reorder_point}</span>
         </div>

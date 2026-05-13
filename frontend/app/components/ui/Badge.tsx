@@ -15,6 +15,16 @@ const STYLES: Record<string, { bg: string; color: string; border: string }> = {
   stockout: { bg: "rgba(239,68,68,0.15)", color: "#f87171", border: "rgba(239,68,68,0.3)" },
 };
 
+const LABELS: Record<string, string> = {
+  critical: "Kritik",
+  high: "Yüksek",
+  medium: "Orta",
+  low: "Düşük",
+  ok: "Sağlıklı",
+  warning: "Uyarı",
+  stockout: "Stok Yok",
+};
+
 export function Badge({ level, children }: BadgeProps) {
   const s = STYLES[level] ?? STYLES.low;
   return (
@@ -24,7 +34,7 @@ export function Badge({ level, children }: BadgeProps) {
       fontSize: 11, fontFamily: "Fira Code", fontWeight: 600,
       whiteSpace: "nowrap",
     }}>
-      {children ?? level.toUpperCase()}
+      {children ?? LABELS[level] ?? String(level)}
     </span>
   );
 }

@@ -67,10 +67,10 @@ export default function RegisterPage() {
   const inputStyle = {
     width: "100%",
     padding: "11px 12px 11px 40px",
-    background: "rgba(255,255,255,0.05)",
-    border: "1px solid rgba(255,255,255,0.1)",
+    background: "rgba(255,255,255,0.92)",
+    border: "1px solid rgba(148,163,184,0.28)",
     borderRadius: 10,
-    color: "#e2e8f0",
+    color: "#0f172a",
     fontSize: 14,
     fontFamily: "inherit",
     outline: "none",
@@ -89,7 +89,7 @@ export default function RegisterPage() {
   return (
     <div style={{
       minHeight: "100vh",
-      background: "linear-gradient(135deg, #020817 0%, #0f0a2e 60%, #020817 100%)",
+      background: "linear-gradient(135deg, #f8fbff 0%, #edf4fb 55%, #f8fbff 100%)",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
@@ -98,19 +98,19 @@ export default function RegisterPage() {
       overflow: "hidden",
     }}>
       {/* Background orbs */}
-      <div style={{ position: "fixed", top: "-20%", right: "-10%", width: 600, height: 600, borderRadius: "50%", background: "radial-gradient(circle, rgba(99,102,241,0.12) 0%, transparent 70%)", pointerEvents: "none" }} />
-      <div style={{ position: "fixed", bottom: "-20%", left: "-10%", width: 500, height: 500, borderRadius: "50%", background: "radial-gradient(circle, rgba(139,92,246,0.1) 0%, transparent 70%)", pointerEvents: "none" }} />
+      <div style={{ position: "fixed", top: "-20%", right: "-10%", width: 600, height: 600, borderRadius: "50%", background: "radial-gradient(circle, rgba(59,130,246,0.12) 0%, transparent 70%)", pointerEvents: "none" }} />
+      <div style={{ position: "fixed", bottom: "-20%", left: "-10%", width: 500, height: 500, borderRadius: "50%", background: "radial-gradient(circle, rgba(20,184,166,0.08) 0%, transparent 70%)", pointerEvents: "none" }} />
 
       <div style={{
         width: "100%",
         maxWidth: 440,
-        background: "rgba(15,20,40,0.8)",
+        background: "rgba(255,255,255,0.78)",
         backdropFilter: "blur(24px)",
         WebkitBackdropFilter: "blur(24px)",
-        border: "1px solid rgba(255,255,255,0.08)",
+        border: "1px solid rgba(148,163,184,0.24)",
         borderRadius: 20,
         padding: "40px 36px",
-        boxShadow: "0 25px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(99,102,241,0.1)",
+        boxShadow: "0 20px 48px rgba(15,23,42,0.14), 0 0 0 1px rgba(59,130,246,0.08)",
         position: "relative",
         zIndex: 1,
       }}>
@@ -118,17 +118,17 @@ export default function RegisterPage() {
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", marginBottom: 32 }}>
           <div style={{
             width: 56, height: 56, borderRadius: 16,
-            background: "linear-gradient(135deg,#6366f1,#8b5cf6)",
+            background: "linear-gradient(135deg,#3b82f6,#14b8a6)",
             display: "flex", alignItems: "center", justifyContent: "center",
-            boxShadow: "0 0 28px rgba(99,102,241,0.4)",
+            boxShadow: "0 0 28px rgba(59,130,246,0.34)",
             color: "white", marginBottom: 14,
           }}>
             <IconShield />
           </div>
-          <div style={{ fontFamily: "Fira Code", fontWeight: 700, fontSize: 20, color: "#e2e8f0" }}>
+          <div style={{ fontFamily: "Fira Code", fontWeight: 700, fontSize: 20, color: "#0f172a" }}>
             Hesap Oluştur
           </div>
-          <div style={{ fontSize: 12, color: "#64748b", marginTop: 4, fontFamily: "Fira Code" }}>
+          <div style={{ fontSize: 12, color: "#475569", marginTop: 4, fontFamily: "Fira Code" }}>
             SupplyShield platformuna katılın
           </div>
         </div>
@@ -157,8 +157,8 @@ export default function RegisterPage() {
                 onChange={update(field)}
                 required
                 style={inputStyle}
-                onFocus={e => (e.target.style.borderColor = "rgba(99,102,241,0.5)")}
-                onBlur={e => (e.target.style.borderColor = "rgba(255,255,255,0.1)")}
+                onFocus={e => (e.target.style.borderColor = "rgba(59,130,246,0.45)")}
+                onBlur={e => (e.target.style.borderColor = "rgba(148,163,184,0.28)")}
               />
             </div>
           ))}
@@ -168,11 +168,11 @@ export default function RegisterPage() {
             disabled={loading}
             style={{
               width: "100%", padding: "13px",
-              background: loading ? "rgba(99,102,241,0.4)" : "linear-gradient(135deg,#6366f1,#8b5cf6)",
+              background: loading ? "rgba(59,130,246,0.42)" : "linear-gradient(135deg,#3b82f6,#14b8a6)",
               border: "none", borderRadius: 12, color: "white",
               fontSize: 15, fontWeight: 600, cursor: loading ? "not-allowed" : "pointer",
               transition: "all 0.15s ease",
-              boxShadow: loading ? "none" : "0 4px 20px rgba(99,102,241,0.4)",
+              boxShadow: loading ? "none" : "0 4px 20px rgba(59,130,246,0.35)",
               marginTop: 4,
             }}
           >
@@ -180,9 +180,9 @@ export default function RegisterPage() {
           </button>
         </form>
 
-        <div style={{ textAlign: "center", marginTop: 20, fontSize: 13, color: "#64748b" }}>
+        <div style={{ textAlign: "center", marginTop: 20, fontSize: 13, color: "#475569" }}>
           Zaten hesabınız var mı?{" "}
-          <a href="/login" style={{ color: "#a5b4fc", textDecoration: "none", fontWeight: 500 }}>
+          <a href="/login" style={{ color: "#2563eb", textDecoration: "none", fontWeight: 500 }}>
             Giriş yapın
           </a>
         </div>

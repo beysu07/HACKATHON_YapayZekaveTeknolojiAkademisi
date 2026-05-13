@@ -14,19 +14,19 @@ const IconRefresh  = () => <svg width="14" height="14" viewBox="0 0 24 24" fill=
 const IconActivity = () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>;
 const IconAlert    = () => <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>;
 
-const IMPACT_COLOR: Record<string, string> = { high: "#f87171", medium: "#fbbf24", low: "#34d399" };
+const IMPACT_COLOR: Record<string, string> = { high: "#f87171", medium: "#fbbf24", low: "#14b8a6" };
 
 function RiskFactorItem({ factor }: { factor: RiskFactor }) {
   const color = IMPACT_COLOR[factor.impact] ?? "#94a3b8";
   return (
-    <div style={{ display: "flex", alignItems: "flex-start", gap: 10, padding: "10px 14px", background: "rgba(255,255,255,0.03)", borderRadius: 8, border: "1px solid rgba(255,255,255,0.06)" }}>
+    <div style={{ display: "flex", alignItems: "flex-start", gap: 10, padding: "10px 14px", background: "rgba(248,250,252,0.9)", borderRadius: 8, border: "1px solid rgba(148,163,184,0.2)" }}>
       <div style={{ width: 6, height: 6, borderRadius: "50%", background: color, boxShadow: `0 0 6px ${color}`, marginTop: 5, flexShrink: 0 }} />
       <div style={{ flex: 1 }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 4 }}>
-          <span style={{ fontSize: 12, fontWeight: 600, color: "#e2e8f0" }}>{factor.factor}</span>
+          <span style={{ fontSize: 12, fontWeight: 600, color: "#0f172a" }}>{factor.factor}</span>
           <span style={{ fontSize: 10, color, fontFamily: "Fira Code", background: `${color}18`, padding: "1px 6px", borderRadius: 4 }}>{factor.impact.toUpperCase()}</span>
         </div>
-        <p style={{ fontSize: 11, color: "#94a3b8", margin: 0, lineHeight: 1.6 }}>{factor.description}</p>
+        <p style={{ fontSize: 11, color: "#475569", margin: 0, lineHeight: 1.6 }}>{factor.description}</p>
         {factor.value !== undefined && (
           <span style={{ fontSize: 10, color: "#64748b", fontFamily: "Fira Code" }}>Değer: {factor.value}</span>
         )}
@@ -42,7 +42,7 @@ function RiskScoreGauge({ score }: { score: number }) {
   return (
     <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
       <svg width="100" height="100" viewBox="0 0 100 100">
-        <circle cx="50" cy="50" r="36" fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="8" />
+        <circle cx="50" cy="50" r="36" fill="none" stroke="rgba(148,163,184,0.22)" strokeWidth="8" />
         <circle cx="50" cy="50" r="36" fill="none" stroke={color} strokeWidth="8" strokeLinecap="round"
           strokeDasharray={circumference} strokeDashoffset={offset}
           style={{ transform: "rotate(-90deg)", transformOrigin: "50% 50%", transition: "stroke-dashoffset 0.8s ease", filter: `drop-shadow(0 0 6px ${color})` }}
@@ -59,16 +59,16 @@ export function RiskAnalysisView() {
   return (
     <div>
       <PageHeader
-        title="Risk Analizi"
-        subtitle="Agent tabanlı tedarik zinciri risk değerlendirmesi"
+        title="Tedarik Uyarıları"
+        subtitle="Ajan tabanlı risk değerlendirmesi ve açıklamalar"
         action={<GlassButton onClick={refresh} variant="primary"><IconRefresh /> Yenile</GlassButton>}
       />
 
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24, alignItems: "start" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 26, alignItems: "start" }}>
         {/* Sol — Risk Tablosu */}
-        <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
           <GlassCard padding={20}>
-            <div style={{ fontSize: 14, fontWeight: 600, color: "#e2e8f0", marginBottom: 16 }}>
+            <div style={{ fontSize: 14, fontWeight: 600, color: "#0f172a", marginBottom: 16 }}>
               Tüm Ürün Riskleri
               <span style={{ fontSize: 11, color: "#64748b", fontWeight: 400, marginLeft: 8, fontFamily: "Fira Code" }}>
                 InventoryAnalystAgent + SupplyShieldAgent
@@ -82,17 +82,17 @@ export function RiskAnalysisView() {
                     onClick={() => analyzeProduct(r.product_id)}
                     style={{
                       display: "flex", alignItems: "center", gap: 12, padding: "12px 14px",
-                      background: selectedId === r.product_id ? "rgba(99,102,241,0.1)" : "rgba(255,255,255,0.03)",
-                      border: selectedId === r.product_id ? "1px solid rgba(99,102,241,0.3)" : "1px solid rgba(255,255,255,0.06)",
+                      background: selectedId === r.product_id ? "rgba(59,130,246,0.10)" : "rgba(255,255,255,0.72)",
+                      border: selectedId === r.product_id ? "1px solid rgba(59,130,246,0.3)" : "1px solid rgba(148,163,184,0.2)",
                       borderRadius: 10, cursor: "pointer", transition: "all 0.15s ease",
                     }}
                   >
                     {/* Score bar */}
-                    <div style={{ width: 48, textAlign: "center" }}>
-                      <div style={{ fontSize: 18, fontWeight: 700, fontFamily: "Fira Code", color: r.risk_score >= 75 ? "#f87171" : r.risk_score >= 50 ? "#fbbf24" : "#34d399" }}>{r.risk_score}</div>
+                    <div style={{ width: 52, textAlign: "center" }}>
+                      <div style={{ fontSize: 19, fontWeight: 700, fontFamily: "Fira Code", color: r.risk_score >= 75 ? "#f87171" : r.risk_score >= 50 ? "#fbbf24" : "#14b8a6" }}>{r.risk_score}</div>
                     </div>
                     <div style={{ flex: 1, minWidth: 0 }}>
-                      <div style={{ fontSize: 13, fontWeight: 600, color: "#e2e8f0", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{r.product_name}</div>
+                      <div style={{ fontSize: 13, fontWeight: 600, color: "#0f172a", lineHeight: 1.35, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{r.product_name}</div>
                       <div style={{ fontSize: 11, color: "#64748b", marginTop: 2 }}>{r.category} · {r.supplier_name}</div>
                     </div>
                     <Badge level={r.risk_level} />
@@ -107,7 +107,7 @@ export function RiskAnalysisView() {
         </div>
 
         {/* Sağ — Detay Analizi */}
-        <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
           {analysisLoading && (
             <GlassCard padding={40}>
               <LoadingSpinner label="Ajan analizi çalışıyor..." />
@@ -118,7 +118,7 @@ export function RiskAnalysisView() {
             <>
               {/* Risk Özeti */}
               <GlassCard padding={20}>
-                <div style={{ fontSize: 14, fontWeight: 600, color: "#e2e8f0", marginBottom: 16 }}>Risk Özeti — {analysisResult.product_name}</div>
+                <div style={{ fontSize: 14, fontWeight: 600, color: "#0f172a", marginBottom: 16 }}>Risk Özeti — {analysisResult.product_name}</div>
                 <div style={{ display: "flex", gap: 20, alignItems: "center" }}>
                   <RiskScoreGauge score={analysisResult.risk_analysis.risk_score} />
                   <div style={{ flex: 1 }}>
@@ -128,7 +128,7 @@ export function RiskAnalysisView() {
                         Güven: {(analysisResult.risk_analysis.confidence * 100).toFixed(0)}%
                       </span>
                     </div>
-                    <p style={{ fontSize: 12, color: "#94a3b8", lineHeight: 1.7, margin: 0 }}>
+                    <p style={{ fontSize: 12, color: "#475569", lineHeight: 1.7, margin: 0 }}>
                       {analysisResult.risk_analysis.explanation}
                     </p>
                   </div>
@@ -137,7 +137,7 @@ export function RiskAnalysisView() {
 
               {/* Risk Faktörleri */}
               <GlassCard padding={20}>
-                <div style={{ fontSize: 14, fontWeight: 600, color: "#e2e8f0", marginBottom: 14, display: "flex", alignItems: "center", gap: 6 }}>
+                <div style={{ fontSize: 14, fontWeight: 600, color: "#0f172a", marginBottom: 14, display: "flex", alignItems: "center", gap: 6 }}>
                   <IconAlert /> Risk Faktörleri
                   <span style={{ fontSize: 11, color: "#64748b", fontWeight: 400, marginLeft: 4 }}>
                     ({analysisResult.risk_analysis.risk_factors.length} faktör)
@@ -148,7 +148,7 @@ export function RiskAnalysisView() {
                     <RiskFactorItem key={i} factor={f} />
                   ))}
                   {analysisResult.risk_analysis.risk_factors.length === 0 && (
-                    <div style={{ color: "#34d399", fontSize: 13, textAlign: "center", padding: 20 }}>Risk faktörü tespit edilmedi</div>
+                    <div style={{ color: "#14b8a6", fontSize: 13, textAlign: "center", padding: 20 }}>Risk faktörü tespit edilmedi</div>
                   )}
                 </div>
               </GlassCard>
@@ -162,7 +162,7 @@ export function RiskAnalysisView() {
             <GlassCard padding={40}>
               <div style={{ textAlign: "center", color: "#64748b", fontSize: 13, lineHeight: 1.7 }}>
                 Sol taraftan bir ürün seçin.<br />
-                <span style={{ color: "#6366f1", fontFamily: "Fira Code", fontSize: 11 }}>InventoryAnalystAgent + SupplyShieldAgent + DemandForecastAgent</span><br />
+                <span style={{ color: "#3b82f6", fontFamily: "Fira Code", fontSize: 11 }}>InventoryAnalystAgent + SupplyShieldAgent + DemandForecastAgent</span><br />
                 otomatik devreye girer.
               </div>
             </GlassCard>

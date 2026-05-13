@@ -26,8 +26,8 @@ const AGENT_PIPELINE = [
 function AgentPipelineCard() {
   return (
     <GlassCard padding={20}>
-      <div style={{ fontSize: 14, fontWeight: 600, color: "#e2e8f0", marginBottom: 16 }}>
-        Orchestrator Pipeline — 7 Ajan
+      <div style={{ fontSize: 14, fontWeight: 600, color: "#0f172a", marginBottom: 16 }}>
+        Orkestrasyon Akışı — 7 Ajan
       </div>
       <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
         {AGENT_PIPELINE.map((agent, i) => (
@@ -59,13 +59,13 @@ function RunCard({ run }: { run: AgentRun }) {
 
   return (
     <div style={{
-      background: "rgba(255,255,255,0.03)", border: `1px solid ${statusColor}25`,
+      background: "rgba(255,255,255,0.82)", border: `1px solid ${statusColor}30`,
       borderRadius: 12, padding: "16px 18px",
       borderLeft: `3px solid ${statusColor}`,
     }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 10 }}>
         <div>
-          <div style={{ fontSize: 13, fontWeight: 600, color: "#e2e8f0" }}>{run.productName}</div>
+          <div style={{ fontSize: 13, fontWeight: 600, color: "#0f172a" }}>{run.productName}</div>
           <div style={{ fontSize: 11, color: "#64748b", marginTop: 2, fontFamily: "Fira Code" }}>
             {run.productId} · {new Date(run.startedAt).toLocaleTimeString("tr-TR")}
             {duration && ` · ${duration}`}
@@ -82,7 +82,7 @@ function RunCard({ run }: { run: AgentRun }) {
       </div>
 
       {run.status === "running" && (
-        <div style={{ height: 3, background: "rgba(255,255,255,0.06)", borderRadius: 2, overflow: "hidden" }}>
+        <div style={{ height: 3, background: "rgba(148,163,184,0.22)", borderRadius: 2, overflow: "hidden" }}>
           <div style={{ height: "100%", width: "60%", background: "linear-gradient(90deg, transparent, #6366f1, transparent)", animation: "shimmer 1.5s ease-in-out infinite" }} />
         </div>
       )}
@@ -118,7 +118,7 @@ function RunCard({ run }: { run: AgentRun }) {
 
 function MetricCell({ label, value, color }: { label: string; value: string; color: string }) {
   return (
-    <div style={{ background: "rgba(255,255,255,0.03)", borderRadius: 7, padding: "8px 10px" }}>
+    <div style={{ background: "rgba(248,250,252,0.9)", border: "1px solid rgba(148,163,184,0.2)", borderRadius: 7, padding: "8px 10px" }}>
       <div style={{ fontSize: 9, color: "#64748b", fontFamily: "Fira Code", marginBottom: 3 }}>{label}</div>
       <div style={{ fontSize: 13, fontWeight: 700, fontFamily: "Fira Code", color }}>{value}</div>
     </div>
@@ -136,34 +136,34 @@ export function AgentsView() {
   return (
     <div>
       <PageHeader
-        title="AI Agents"
-        subtitle="OrchestratorAgent — 7 uzman ajan pipeline yönetimi"
+        title="Yapay Zeka Ajanları"
+        subtitle="7 uzman ajanın birlikte çalıştığı karar akışı"
         action={
           <div style={{ display: "flex", gap: 8 }}>
             <GlassButton variant="ghost" onClick={clearRuns} disabled={runs.length === 0}><IconClear /> Temizle</GlassButton>
             <GlassButton variant="primary" onClick={() => runFullPipeline(products)} disabled={pipelineRunning || productsLoading}>
-              <IconPlay /> {pipelineRunning ? "Pipeline Çalışıyor..." : "Tüm Ürünleri Analiz Et"}
+              <IconPlay /> {pipelineRunning ? "İş akışı çalışıyor..." : "Tüm Ürünleri Analiz Et"}
             </GlassButton>
           </div>
         }
       />
 
       <div style={{ display: "grid", gridTemplateColumns: "300px 1fr", gap: 24, alignItems: "start" }}>
-        {/* Sol — Pipeline Görseli */}
+        {/* Sol — İş Akışı Görseli */}
         <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
           <AgentPipelineCard />
 
           {/* Ürün Listesi */}
           <GlassCard padding={20}>
-            <div style={{ fontSize: 13, fontWeight: 600, color: "#e2e8f0", marginBottom: 14 }}>Ürünler</div>
+            <div style={{ fontSize: 13, fontWeight: 600, color: "#0f172a", marginBottom: 14 }}>Ürünler</div>
             {productsLoading ? <LoadingSpinner size={24} label="Yükleniyor..." /> : (
               <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
                 {products.map((p) => {
                   const run = runs.find((r) => r.productId === p.product_id);
                   return (
-                    <div key={p.product_id} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "8px 10px", background: "rgba(255,255,255,0.03)", borderRadius: 8 }}>
+                    <div key={p.product_id} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "8px 10px", background: "rgba(255,255,255,0.72)", border: "1px solid rgba(148,163,184,0.18)", borderRadius: 8 }}>
                       <div>
-                        <div style={{ fontSize: 12, fontWeight: 600, color: "#e2e8f0" }}>{p.product_name}</div>
+                        <div style={{ fontSize: 12, fontWeight: 600, color: "#0f172a" }}>{p.product_name}</div>
                         <Badge level={p.risk_level} />
                       </div>
                       <GlassButton
@@ -199,10 +199,10 @@ export function AgentsView() {
 
           {/* Aktif Çalışma Banner */}
           {runningRun && (
-            <div style={{ marginBottom: 14, padding: "12px 16px", background: "rgba(99,102,241,0.1)", border: "1px solid rgba(99,102,241,0.25)", borderRadius: 10, display: "flex", alignItems: "center", gap: 10 }}>
+            <div style={{ marginBottom: 14, padding: "12px 16px", background: "rgba(59,130,246,0.1)", border: "1px solid rgba(59,130,246,0.24)", borderRadius: 10, display: "flex", alignItems: "center", gap: 10 }}>
               <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#6366f1", animation: "pulse 1.5s ease-in-out infinite" }} />
-              <span style={{ fontSize: 12, color: "#a5b4fc", fontFamily: "Fira Code" }}>
-                {runningRun.productName} analiz ediliyor — 7 ajan pipeline aktif
+              <span style={{ fontSize: 12, color: "#1d4ed8", fontFamily: "Fira Code" }}>
+                {runningRun.productName} analiz ediliyor — 7 ajan akışı aktif
               </span>
             </div>
           )}
@@ -213,9 +213,9 @@ export function AgentsView() {
                 <div style={{ width: 56, height: 56, borderRadius: 14, background: "rgba(99,102,241,0.1)", border: "1px solid rgba(99,102,241,0.2)", display: "flex", alignItems: "center", justifyContent: "center", color: "#a5b4fc" }}>
                   <IconBot />
                 </div>
-                <div style={{ color: "#e2e8f0", fontSize: 15, fontWeight: 600 }}>Agent çalıştırılmadı</div>
+                <div style={{ color: "#0f172a", fontSize: 15, fontWeight: 600 }}>Ajan çalıştırılmadı</div>
                 <div style={{ color: "#64748b", fontSize: 12, maxWidth: 280, lineHeight: 1.7 }}>
-                  Sol taraftaki ürünlerden birini seçin veya "Tüm Ürünleri Analiz Et" ile tam pipeline çalıştırın.
+                  Sol taraftaki ürünlerden birini seçin veya "Tüm Ürünleri Analiz Et" ile tam iş akışını çalıştırın.
                 </div>
               </div>
             </GlassCard>

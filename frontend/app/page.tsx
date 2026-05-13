@@ -32,15 +32,15 @@ export default function App() {
   }, []);
 
   if (!ready) return (
-    <div style={{ display: "flex", alignItems: "center", justifyContent: "center", minHeight: "100vh", background: "#020817", color: "#6366f1", fontFamily: "Fira Code", fontSize: 14 }}>
+    <div style={{ display: "flex", alignItems: "center", justifyContent: "center", minHeight: "100vh", background: "#f3f7fb", color: "#3b82f6", fontFamily: "Fira Code", fontSize: 14 }}>
       Yükleniyor...
     </div>
   );
 
   return (
-    <div style={{ display: "flex", minHeight: "100vh", background: "#020817" }}>
+    <div style={{ display: "flex", minHeight: "100vh", background: "#f3f7fb" }}>
       {/* Ambient background glow */}
-      <div style={{ position: "fixed", top: 0, left: 0, right: 0, height: "60vh", pointerEvents: "none", background: "radial-gradient(ellipse 80% 60% at 30% -10%,rgba(99,102,241,0.1),transparent)", zIndex: 0 }} />
+      <div style={{ position: "fixed", top: 0, left: 0, right: 0, height: "60vh", pointerEvents: "none", background: "radial-gradient(ellipse 80% 60% at 30% -10%,rgba(59,130,246,0.12),transparent)", zIndex: 0 }} />
 
       <Sidebar active={activePage} onNavigate={setActivePage} />
 

@@ -13,11 +13,11 @@ const IconBot      = () => <svg width="18" height="18" viewBox="0 0 24 24" fill=
 
 // ─── Nav Config (OCP — yeni sayfa = yeni obje) ────────────────────────────────
 const NAV_ITEMS: { id: NavPage; label: string; icon: React.ReactNode; badge?: string }[] = [
-  { id: "dashboard",  label: "Dashboard",    icon: <IconGrid /> },
+  { id: "dashboard",  label: "Ana Panel",    icon: <IconGrid /> },
   { id: "risks",      label: "Risk Analizi", icon: <IconAlert />, badge: "AI" },
-  { id: "inventory",  label: "Envanter",     icon: <IconBox /> },
-  { id: "logistics",  label: "Lojistik",     icon: <IconTruck />, badge: "AI" },
-  { id: "agents",     label: "AI Agents",    icon: <IconBot />, badge: "7" },
+  { id: "inventory",  label: "Stok Sağlığı", icon: <IconBox /> },
+  { id: "logistics",  label: "Tedarik Planı", icon: <IconTruck />, badge: "AI" },
+  { id: "agents",     label: "Yapay Zeka Ajanları", icon: <IconBot />, badge: "7" },
 ];
 
 interface SidebarProps {
@@ -37,20 +37,20 @@ export function Sidebar({ active, onNavigate }: SidebarProps) {
   return (
     <aside style={{
       width: 240, minHeight: "100vh",
-      background: "rgba(10,15,30,0.95)",
-      borderRight: "1px solid rgba(255,255,255,0.06)",
+      background: "rgba(248, 252, 255, 0.94)",
+      borderRight: "1px solid rgba(148,163,184,0.2)",
       display: "flex", flexDirection: "column",
       padding: "24px 16px",
       position: "fixed", left: 0, top: 0, bottom: 0, zIndex: 50,
     }}>
       {/* Logo */}
       <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 36, paddingLeft: 8 }}>
-        <div style={{ width: 36, height: 36, borderRadius: 10, background: "linear-gradient(135deg,#6366f1,#8b5cf6)", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 0 20px rgba(99,102,241,0.4)", color: "white" }}>
+        <div style={{ width: 36, height: 36, borderRadius: 10, background: "linear-gradient(135deg,#3b82f6,#14b8a6)", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 0 20px rgba(59,130,246,0.35)", color: "white" }}>
           <IconShield />
         </div>
         <div>
-          <div style={{ fontFamily: "Fira Code", fontWeight: 700, fontSize: 15, color: "#e2e8f0" }}>SupplyShield</div>
-          <div style={{ fontSize: 10, color: "#64748b", fontFamily: "Fira Code" }}>AI Risk Platform</div>
+          <div style={{ fontFamily: "Fira Code", fontWeight: 700, fontSize: 15, color: "#0f172a" }}>SupplyShield</div>
+          <div style={{ fontSize: 10, color: "#64748b", fontFamily: "Fira Code" }}>Tedarik Risk Platformu</div>
         </div>
       </div>
 
@@ -62,17 +62,17 @@ export function Sidebar({ active, onNavigate }: SidebarProps) {
             <button key={id} onClick={() => onNavigate(id)} style={{
               display: "flex", alignItems: "center", justifyContent: "space-between",
               padding: "10px 12px", borderRadius: 10, width: "100%", textAlign: "left",
-              background: isActive ? "rgba(99,102,241,0.15)" : "transparent",
-              border: isActive ? "1px solid rgba(99,102,241,0.3)" : "1px solid transparent",
-              color: isActive ? "#a5b4fc" : "#94a3b8",
+              background: isActive ? "rgba(59,130,246,0.12)" : "transparent",
+              border: isActive ? "1px solid rgba(59,130,246,0.22)" : "1px solid transparent",
+              color: isActive ? "#1e40af" : "#475569",
               cursor: "pointer", transition: "all 0.15s ease", fontSize: 14, fontFamily: "Fira Sans",
             }}>
               <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                <span style={{ opacity: isActive ? 1 : 0.7 }}>{icon}</span>
+                <span style={{ opacity: isActive ? 1 : 0.75 }}>{icon}</span>
                 {label}
               </div>
               {badge && (
-                <span style={{ fontSize: 9, fontFamily: "Fira Code", background: isActive ? "rgba(99,102,241,0.3)" : "rgba(255,255,255,0.08)", color: isActive ? "#a5b4fc" : "#64748b", padding: "1px 5px", borderRadius: 4 }}>
+                <span style={{ fontSize: 9, fontFamily: "Fira Code", background: isActive ? "rgba(20,184,166,0.18)" : "rgba(148,163,184,0.16)", color: isActive ? "#0f766e" : "#64748b", padding: "1px 5px", borderRadius: 4 }}>
                   {badge}
                 </span>
               )}
@@ -82,21 +82,21 @@ export function Sidebar({ active, onNavigate }: SidebarProps) {
       </nav>
 
       {/* Status Footer */}
-      <div style={{ padding: "12px", borderRadius: 10, background: "rgba(99,102,241,0.08)", border: "1px solid rgba(99,102,241,0.15)", marginBottom: 12 }}>
-        <div style={{ fontSize: 10, color: "#6366f1", fontFamily: "Fira Code", marginBottom: 6 }}>SİSTEM DURUMU</div>
+      <div style={{ padding: "12px", borderRadius: 10, background: "rgba(59,130,246,0.08)", border: "1px solid rgba(59,130,246,0.14)", marginBottom: 12 }}>
+        <div style={{ fontSize: 10, color: "#3b82f6", fontFamily: "Fira Code", marginBottom: 6 }}>SİSTEM DURUMU</div>
         <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-          <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#34d399", boxShadow: "0 0 6px #34d399" }} />
-          <span style={{ fontSize: 11, color: "#94a3b8" }}>Tüm ajanlar aktif</span>
+          <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#10b981", boxShadow: "0 0 6px rgba(16,185,129,0.45)" }} />
+          <span style={{ fontSize: 11, color: "#475569" }}>Tüm servisler aktif</span>
         </div>
-        <div style={{ marginTop: 6, fontSize: 10, color: "#475569", fontFamily: "Fira Code" }}>
+        <div style={{ marginTop: 6, fontSize: 10, color: "#64748b", fontFamily: "Fira Code" }}>
           v1.0 · 7 ajan · FastAPI
         </div>
       </div>
 
       {/* User Info + Logout */}
-      <div style={{ padding: "12px", borderRadius: 10, background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
+      <div style={{ padding: "12px", borderRadius: 10, background: "rgba(255,255,255,0.72)", border: "1px solid rgba(148,163,184,0.18)" }}>
         <div style={{ marginBottom: 10 }}>
-          <div style={{ fontSize: 12, color: "#e2e8f0", fontWeight: 500, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+          <div style={{ fontSize: 12, color: "#0f172a", fontWeight: 500, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
             {user?.company_name || "—"}
           </div>
           <div style={{ fontSize: 10, color: "#64748b", fontFamily: "Fira Code", marginTop: 2 }}>
@@ -107,7 +107,7 @@ export function Sidebar({ active, onNavigate }: SidebarProps) {
           onClick={handleLogout}
           style={{
             width: "100%", padding: "7px 10px",
-            background: "rgba(239,68,68,0.08)", border: "1px solid rgba(239,68,68,0.15)",
+            background: "rgba(239,68,68,0.08)", border: "1px solid rgba(239,68,68,0.2)",
             borderRadius: 8, color: "#f87171", cursor: "pointer", fontSize: 12,
             fontFamily: "Fira Code", transition: "all 0.15s", textAlign: "center",
           }}
